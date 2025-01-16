@@ -7,14 +7,17 @@ public class AppManager {
 
     public static final String STATE_INIT = "INIT";
     public static final String STATE_LOGGED_IN = "LOGGED_IN";
-    public static final String STATE_LOGGED_OUT = "LOGGED_OUT";
-    public static final String STATE_LOADING = "LOADING";
+    public static final String STATE_LOGOUT = "LOGOUT";
+    public static final String STATE_LOGIN = "LOGIN";
+
+    private boolean running;
 
     //private constructor to prevent multiple instances are created
     private AppManager() {
         isLoggedIn = false;
         currentUser = "";
         currentState = "INIT";
+
     }
 
     //singleton pattern
@@ -28,7 +31,23 @@ public class AppManager {
     // Initialize app
     public void initializeApp() {
         System.out.println("App is initializing...");
-        currentState = "LOADING";
+
+        while (running){
+            switch (currentState){
+                case "INIT":
+                    initializeApp();
+                    break;
+
+                case "LOGIN":
+                    login("Carolyn");
+                    break;
+
+                case "LOGOUT":
+                    logout();
+                    break;
+            }
+        }
+
     }
 
     //user login handler
@@ -46,7 +65,6 @@ public class AppManager {
         if (isLoggedIn) {
             isLoggedIn = false;
             currentUser = "";
-            currentState = "LOGGED_OUT";
             System.out.println("User logged out.");
         }
     }
@@ -55,5 +73,6 @@ public class AppManager {
     public String getCurrentState() {
         return currentState;
     }
+
 }
 

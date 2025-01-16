@@ -2,10 +2,11 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Note {
+    public String name;
     private String text;
     private static List<Image> photos = new ArrayList<Image>();
     private List<Video> videos = new ArrayList<Video>();
-    private int id;
+    public int id;
 
     static void addImage(String image1){
         Image img = new Image(image1);
