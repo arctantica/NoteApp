@@ -10,6 +10,15 @@ public class Main {
             case "INIT":
 
                 break;
+
+            case "LOGGED_IN":
+                break;
+
+            case "LOGGED_OUT":
+                break;
+
+            case "LOADING":
+                break;
         }
     }
 }
